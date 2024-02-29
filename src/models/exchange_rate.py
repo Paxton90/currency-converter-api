@@ -1,3 +1,6 @@
+class InvalidCurrencyCode(Exception):
+    pass
+
 class ExchangeRate:
     DEFAULT_RATES = {
         "USD": {"USD": 1, "JPY": 3.669, "TWD": 30.444},
@@ -9,4 +12,6 @@ class ExchangeRate:
         self.exchange_rates = exchange_rates or self.DEFAULT_RATES
 
     def get_rate(self, source: str, target: str) -> float:
+        if source not in self.exchange_rates or target not in self.exchange_rates[source]:
+            raise InvalidCurrencyCode(f"Invalid currency code: {source} or {target}")
         return self.exchange_rates[source][target]
