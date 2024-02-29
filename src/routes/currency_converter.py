@@ -79,12 +79,12 @@ def convert_currency():
     try:
         coverted_currency = currency_converter.convert(source, target, amount)
     except Exception as e:
-        return {
+        return jsonify({
             "msg": "error",
             "reason": str(e)
-        }
+        }), 400
 
-    return {
+    return jsonify({
         "msg": "success",
         "amount": coverted_currency
-    }, 200
+    }), 200
