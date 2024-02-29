@@ -8,6 +8,7 @@ currency_converter_bp = Blueprint('currency_converter', __name__, url_prefix='cu
 
 @currency_converter_bp.route('/convert', methods=['GET'])
 @swag_from({
+    'tags': ['Currency Converter'],
     'summary': 'Converts an amount from one currency to another.',
     'parameters': [
         {
